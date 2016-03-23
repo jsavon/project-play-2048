@@ -1,6 +1,7 @@
 #TODO: Import the module that will allow you to use Selenium
-from selenium import webdriver
 #TODO: Import the module that will allow you to use the up, down, left, and right keys on your keyboard
+
+from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 def play2048( times ):
@@ -12,15 +13,13 @@ def play2048( times ):
     
     browser = webdriver.Firefox()
     browser.get('https://gabrielecirulli.github.io/2048/')
-    htmlElem = browser.find_element_by_tag_name('html')
-    findScoreElem = browser.find_element_by_class_name('score-container')
-
-    move = 0
-    for move in range(times):
+    for i in range (times):
+        htmlElem = browser.find_element_by_tag_name('html')
         htmlElem.send_keys(Keys.UP)
-        htmlElem.send_keys(Keys.LEFT)
-        htmlElem.send_keys(Keys.DOWN)
         htmlElem.send_keys(Keys.RIGHT)
-        move += 1
-
-    print('Your final score is' +scoreElem.text)
+        htmlElem.send_keys(Keys.DOWN)
+        htmlElem.send_keys(Keys.LEFT)
+        
+    elem = browser.find_element_by_class_name('score-container')
+    print ('Your final score is: ')
+    print (elem.text)
