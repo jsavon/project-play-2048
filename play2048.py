@@ -1,5 +1,7 @@
 #TODO: Import the module that will allow you to use Selenium
+from selenium import webdriver
 #TODO: Import the module that will allow you to use the up, down, left, and right keys on your keyboard
+from selenium.webdriver.common.keys import Keys
 
 def play2048( times ):
     #TODO: write code in this function that:
@@ -8,3 +10,17 @@ def play2048( times ):
     # 3. for each 'time', press these keys in this order: UP, RIGHT, DOWN, LEFT
     # 4. print the final score after all tries to the screen 
     
+    browser = webdriver.Firefox()
+    browser.get('https://gabrielecirulli.github.io/2048/')
+    htmlElem = browser.find_element_by_tag_name('html')
+    findScoreElem = browser.find_element_by_class_name('score-container')
+
+    move = 0
+    for move in range(times):
+        htmlElem.send_keys(Keys.UP)
+        htmlElem.send_keys(Keys.LEFT)
+        htmlElem.send_keys(Keys.DOWN)
+        htmlElem.send_keys(Keys.RIGHT)
+        move += 1
+
+    print('Your final score is '+scoreElem.text)
